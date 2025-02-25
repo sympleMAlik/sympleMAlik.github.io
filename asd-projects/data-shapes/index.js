@@ -92,9 +92,8 @@ $(document).ready(function () {
   // TODO 5-b: call your handleBad function
   function badDisplay() {
     var currentShape = dataShapes[currentIndex];
-    var repeat = currentShape.repeat
-handleBad(currentShape, repeat)
-
+    var repeat = currentShape.repeat;
+    handleBad(currentShape, repeat);
   }
 
   /////////////////////////////////////////////////
@@ -187,6 +186,12 @@ handleBad(currentShape, repeat)
     $("#shape").css("background", `url(images/${color}-${shape}.png)`);
     setBackgroundRepeat(repeat);
   }
+
+  function setBackgroundWithMixed(obj, repeat) {
+    $("#shape").css("background", `url(images/${obj.color}-${obj.shape}.png)`);
+    setBackgroundRepeat(repeat);
+  }
+
   function setBackgroundRepeat(repeat) {
     $("#shape").css("background-size", `${100 / repeat}% ${100 / repeat}%`);
   }
