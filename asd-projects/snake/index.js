@@ -13,7 +13,7 @@ var highScoreElement = $("#highScore");
 // Game Variables
 var snake = {};
 var apple = {};
-var score = {};
+var score = 0;
 // Constant Variables
 var ROWS = 20;
 var COLUMNS = 20;
@@ -82,11 +82,11 @@ function checkForNewDirection(event) {
   perpendicular to the current direction
   */
 
-  if (activeKey === KEY.LEFT && snake.head.direction != "right") {
+  if (activeKey === KEY.RIGHT && snake.head.direction != "right") {
     snake.head.direction = "left";
   }
 
-  if (activeKey === KEY.LEFT && snake.head.direction != "down") {
+  if (activeKey === KEY.DOWN && snake.head.direction != "down") {
     snake.head.direction = "up";
   }
 
@@ -94,7 +94,7 @@ function checkForNewDirection(event) {
     snake.head.direction = "right";
   }
 
-  if (activeKey === KEY.LEFT && snake.head.direction != "up") {
+  if (activeKey === KEY.UP && snake.head.direction != "up") {
     snake.head.direction = "down";
   }
 
@@ -128,7 +128,7 @@ function moveSnake() {
   }
 
   if (snake.head.direction === "up") {
-    snake.head.column = snake.head.row - 1;
+    snake.head.row = snake.head.row - 1;
   }
 
   if (snake.head.direction === "right") {
