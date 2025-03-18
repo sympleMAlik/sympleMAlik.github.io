@@ -142,6 +142,25 @@ function moveSnake() {
 }
 
 function hasHitWall() {
+  if (snake.head.row === -1) {
+    return true;
+    }
+    
+    if (snake.head.row === ROWS + 1) {
+    return true;
+    }
+    if (snake.head.column === -1) {
+      return true;
+      }
+      
+      if (snake.head.column === COLUMNS + 1) {
+      return true;
+      }
+      
+ 
+ 
+ 
+ 
   /* 
   TODO 8: Should return true if the snake's head has collided with the four walls of the
   board, false otherwise.
