@@ -172,6 +172,15 @@ function hasHitWall() {
 }
 
 function hasCollidedWithApple() {
+  if (snake.head.row === apple.row && snake.head.column === apple.column) {
+    return true;
+    } else {
+    return false;
+    }
+    }
+  
+  
+  
   /* 
   TODO 9: Should return true if the snake's head has collided with the apple, 
   false otherwise
@@ -179,8 +188,8 @@ function hasCollidedWithApple() {
   HINT: Both the apple and the snake's head are aware of their own row and column
   */
 
-  return false;
-}
+  
+
 
 function handleAppleCollision() {
   // increase the score and update the score DOM element
@@ -200,11 +209,26 @@ function handleAppleCollision() {
   If the tail is moving "down", place the next snakeSquare above it.
   etc...
   */
-  var row = 0;
-  var column = 0;
-
+  var row = snake.tail.row;
+  var column = snake.tail.column;
+ 
   // code to determine the row and column of the snakeSquare to add to the snake
-
+  if (snake.tail.direction === "left") {
+    column++;
+    }
+    if (snake.tail.direction === "up") {
+      row++;
+      }
+      if (snake.tail.direction === "right") {
+        column--;
+        }
+        if (snake.tail.direction === "down") 
+        row--;
+  
+  
+  
+  
+  
   makeSnakeSquare(row, column);
 }
 
