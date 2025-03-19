@@ -226,8 +226,9 @@ function handleAppleCollision() {
   if (snake.tail.direction === "right") {
     column--;
   }
-  if (snake.tail.direction === "down") row--;
-  sn;
+  if (snake.tail.direction === "down") {
+    row--;
+  }
 
   makeSnakeSquare(row, column);
 }
@@ -251,8 +252,6 @@ function hasCollidedWithSnake() {
   head and each part of the snake's body also knows its own row and column.
   
   */
-
-  return false;
 }
 
 function endGame() {
@@ -365,6 +364,15 @@ function getRandomAvailablePosition() {
     randomPosition.column = Math.floor(Math.random() * COLUMNS);
     randomPosition.row = Math.floor(Math.random() * ROWS);
     spaceIsAvailable = true;
+    for (let i = 0; i < snake.body.length; i++) {
+      if (
+        randomPosition.column === snake.body[i].column &&
+        randomPosition.row === snake.body[i].row
+      ) {
+        spaceIsAvailable = false;
+        break;
+      }
+    }
 
     /*
     TODO 13: After generating the random position determine if that position is
