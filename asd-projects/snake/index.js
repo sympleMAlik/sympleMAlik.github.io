@@ -104,6 +104,20 @@ function checkForNewDirection(event) {
 }
 
 function moveSnake() {
+  for (var i = snake.body.length - 1; i > 0; i--) {
+    var snakeSquare = snake.body[i];
+    var nextSnakeSquare = snake.body[i - 1];
+
+    var nextRow = nextSnakeSquare.row;
+    var nextColumn = nextSnakeSquare.column;
+    var nextDirection = nextSnakeSquare.direction;
+
+    snakeSquare.direction = nextDirection;
+    snakeSquare.row = nextRow;
+    snakeSquare.column = nextColumn;
+    repositionSquare(snakeSquare);
+  }
+
   /* 
   TODO 11: Move each part of the snake's body such that it's body follows the head.
   
@@ -138,29 +152,24 @@ function moveSnake() {
     snake.head.row = snake.head.row + 1;
   }
   repositionSquare(snake.head);
-
 }
 
 function hasHitWall() {
   if (snake.head.row === -1) {
     return true;
-    }
-    
-    if (snake.head.row === ROWS + 1) {
+  }
+
+  if (snake.head.row === ROWS + 1) {
     return true;
-    }
-    if (snake.head.column === -1) {
-      return true;
-      }
-      
-      if (snake.head.column === COLUMNS + 1) {
-      return true;
-      }
-      
- 
- 
- 
- 
+  }
+  if (snake.head.column === -1) {
+    return true;
+  }
+
+  if (snake.head.column === COLUMNS + 1) {
+    return true;
+  }
+
   /* 
   TODO 8: Should return true if the snake's head has collided with the four walls of the
   board, false otherwise.
@@ -174,22 +183,17 @@ function hasHitWall() {
 function hasCollidedWithApple() {
   if (snake.head.row === apple.row && snake.head.column === apple.column) {
     return true;
-    } else {
+  } else {
     return false;
-    }
-    }
-  
-  
-  
-  /* 
+  }
+}
+
+/* 
   TODO 9: Should return true if the snake's head has collided with the apple, 
   false otherwise
   
   HINT: Both the apple and the snake's head are aware of their own row and column
   */
-
-  
-
 
 function handleAppleCollision() {
   // increase the score and update the score DOM element
@@ -211,28 +215,34 @@ function handleAppleCollision() {
   */
   var row = snake.tail.row;
   var column = snake.tail.column;
- 
+
   // code to determine the row and column of the snakeSquare to add to the snake
   if (snake.tail.direction === "left") {
     column++;
-    }
-    if (snake.tail.direction === "up") {
-      row++;
-      }
-      if (snake.tail.direction === "right") {
-        column--;
-        }
-        if (snake.tail.direction === "down") 
-        row--;
-  
-  
-  
-  
-  
+  }
+  if (snake.tail.direction === "up") {
+    row++;
+  }
+  if (snake.tail.direction === "right") {
+    column--;
+  }
+  if (snake.tail.direction === "down") row--;
+  sn;
+
   makeSnakeSquare(row, column);
 }
 
 function hasCollidedWithSnake() {
+  for (var i = 1; i < snake.body.length; i++) {
+    if (
+      snake.body[i].row === snake.head.row &&
+      snake.body[i].column === snake.head.column
+    )
+      return true;
+  }
+
+  return false;
+
   /* 
   TODO 12: Should return true if the snake's head has collided with any part of the
   snake's body.
