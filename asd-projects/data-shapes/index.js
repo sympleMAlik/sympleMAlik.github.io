@@ -49,8 +49,8 @@ $(document).ready(function () {
     var currentshape = dataShapes[i];
     if (currentshape.color === "red") {
       currentshape.goodBehavior = "bounce";
-    } else if (currentShape.color === "blue") {
-      currentShape.goodBehavior = "blink";
+    } else if (currentshape.color === "blue") {
+      currentshape.goodBehavior = "blink";
     } else {
       currentshape.goodBehavior = "spin";
     }
